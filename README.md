@@ -43,24 +43,3 @@ Note that this project has been modified to ensure compatibility with MacOS. For
 ``` 
 pip install -r requirements.txt
 ```
-
-### Load the data and model weights
-
-Download the data and model weights here: 
-
-You can directly move the folders into the root project directory.
-
-The folder structure should be as follows: 
-
-- MFCC
-- Models
-- main.ipynb
-- requirements.txt
-- README.md
-
-### Testing the model
-
-Test the model using the following command: 
-```
-python main.py --mode test --data IEMOCAP  --test_path ./Test_Models/IEMOCAP_16 --split_fold 5 --random_seed 16
-```
