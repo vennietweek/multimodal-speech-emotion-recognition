@@ -2,8 +2,6 @@ from collections import Counter
 import pickle
 import numpy as np
 
-# emotion_counter = Counter()
-
 def createOneHot(train_label, test_label):
     
     maxlen = int(max(train_label.max(), test_label.max()))
@@ -27,7 +25,8 @@ def load_data():
     u = pickle._Unpickler(f)
     u.encoding = 'latin1'
     videoIDs, videoSpeakers, videoLabels, videoText, videoAudio, videoVisual, videoSentence, trainVid, testVid = u.load()
-    # label index mapping = {'hap':0, 'sad':1, 'neu':2, 'ang':3, 'exc':4, 'fru':5}
+    label_mapping = {'hap':0, 'sad':1, 'neu':2, 'ang':3, 'exc':4, 'fru':5}
+    index_to_emotion = {v: k for k, v in label_mapping.items()}
 
     print('Number of training samples: ',len(trainVid))
     print('Number of testing samples: ',len(testVid))
@@ -80,6 +79,12 @@ def load_data():
         pad = [np.zeros(videoVisual[vid][0].shape)] * (max_len - len(videoIDs[vid]))
         video = np.stack(videoVisual[vid] + pad, axis=0)
         test_visual.append(video)
+
+    all_labels = [label for sublist in videoLabels.values() for label in sublist]
+    label_counts = Counter(all_labels)
+    emotion_counts = {index_to_emotion[index]: count for index, count in label_counts.items()}
+    print(f"No. of samples per class: {emotion_counts}")
+    print()
 
     train_text = np.stack(train_text, axis=0)
     train_audio = np.stack(train_audio, axis=0)
