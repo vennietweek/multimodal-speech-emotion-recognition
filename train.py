@@ -15,7 +15,7 @@ def cross_val_training(model_class, data, labels, num_folds=5, epochs=10, batch_
         model = model_class(input_shape=x_train_fold.shape[1:], num_classes=y_train_fold.shape[2])
         model.compile(lr=0.001)
         model.train(x_train_fold, y_train_fold, x_val_fold, y_val_fold, epochs=epochs, batch_size=batch_size)
-        
+
         # Evaluate the model on the validation fold
         y_pred = model.model.predict(x_val_fold)
         y_pred = np.argmax(y_pred, axis=-1).flatten()
