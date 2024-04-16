@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
 from sklearn.model_selection import KFold
 from keras.optimizers.legacy import Adam
+import tensorflow as tf 
 
 class BaseModel:
     def __init__(self, input_shape, num_classes):
@@ -26,22 +27,23 @@ class BaseModel:
         y_pred = np.argmax(predictions, axis=-1).flatten()
         y_true = np.argmax(y_test, axis=-1).flatten()
 
+        mask = (y_true != 0) & (y_pred != 0)
+        y_pred = y_pred[mask]
+        y_true = y_true[mask]
+
+        print("Unique labels in y_true after masking:", np.unique(y_true))
+        print("Unique labels in y_pred after masking:", np.unique(y_pred))
+
         accuracy = accuracy_score(y_true, y_pred)
         precision, recall, f1, _ = precision_recall_fscore_support(y_true, y_pred, average='macro')
 
-        self.metrics =  {
+        self.test_metrics =  {
             'accuracy': accuracy,
             'precision': precision,
             'recall': recall,
             'f1_score': f1,
             'cm': confusion_matrix(y_true, y_pred)
         }
-
-        print("Test Metrics:")
-        print(f"Accuracy: {self.metrics['accuracy']:.4f}")
-        # print(f"Precision: {test_metrics['precision']:.4f}")
-        # print(f"Recall: {test_metrics['recall']:.4f}")
-        print(f"F1 Score: {self.metrics['f1_score']:.4f}")
        
     def cross_val_train(self, data, labels, num_folds=5, epochs=10, batch_size=32):
         kf = KFold(n_splits=num_folds, shuffle=True)
@@ -62,6 +64,10 @@ class BaseModel:
             y_pred = self.model.predict(x_val_fold)
             y_pred = np.argmax(y_pred, axis=-1).flatten()
             y_true = np.argmax(y_val_fold, axis=-1).flatten()
+
+            mask = (y_true != 0) & (y_pred != 0)
+            y_pred = y_pred[mask]
+            y_true = y_true[mask]
             
             # Calculate and store metrics
             accuracy = accuracy_score(y_true, y_pred)
@@ -99,21 +105,19 @@ class BaseModel:
         )
 
         # Evaluate the model on the test dataset
-        test_metrics = self.evaluate(x_test, y_test)
-
-        return history, test_metrics
+        self.evaluate(x_test, y_test)
 
     def print_metrics(self):
         print("Test Metrics:")
-        print(f"Accuracy: {self.metrics['accuracy']:.4f}")
-        # print(f"Precision: {metrics['precision']:.4f}")
-        # print(f"Recall: {metrics['recall']:.4f}")
-        print(f"F1 Score: {self.metrics['f1_score']:.4f}")
+        print(f"Accuracy: {self.test_metrics['accuracy']:.4f}")
+        print(f"Precision: {self.test_metrics['precision']:.4f}")
+        print(f"Recall: {self.test_metrics['recall']:.4f}")
+        print(f"F1 Score: {self.test_metrics['f1_score']:.4f}")
 
-        class_labels = ['hap', 'sad', 'neu', 'ang', 'exc', 'fru']
+        class_labels = ['hap', 'ang', 'sad', 'neu']
         print("Confusion Matrix:")
         plt.figure(figsize=(8,6))
-        sns.heatmap(self.metrics['cm'], annot=True, fmt='g', cmap='Blues', xticklabels=class_labels, yticklabels=class_labels)
+        sns.heatmap(self.test_metrics['cm'], annot=True, fmt='g', cmap='Blues', xticklabels=class_labels, yticklabels=class_labels)
         plt.xlabel('Predicted labels')
         plt.ylabel('True labels')
         plt.title('Confusion Matrix')
