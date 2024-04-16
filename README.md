@@ -43,15 +43,15 @@ Note that this project has been modified to ensure compatibility with MacOS. For
 ``` 
 pip install -r requirements.txt
 ```
-### Files
+### Project Files
 
-#### Project Workbooks
-The project files consist of the following:
+#### Workbooks
+The workbooks consist of the following:
 1. **1_timnet**: Initial implementation of TIM-Net baseline model, with multimodal data.
 2. **2_exploratory_analysis**: Exploration of early VS late fusion approaches, as well as different model architctures on each modality.
 3. **3_multimodal_model**: Design and implementation of a multimodal model.
 
-#### Project Workbooks
+#### Other files
 1. **dataset**: Pre-processed IEMOCAP data
 2. **Archive**: Previous notebooks and experimentations (for assignment, interim report etc.)
 3. **data_utils**: Data utilities such as data load, one-hot encoding, and data preparation.
