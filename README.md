@@ -4,7 +4,7 @@ This project explores multimodal emotion recognition using the IEMOCAP dataset, 
 
 Survey paper: https://bit.ly/3OBITDP
 
-Report: bit.ly/multimodal-emotion-recognition
+Report: https://bit.ly/multimodal-emotion-recognition
 
 ## Dataset
 
