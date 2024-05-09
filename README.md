@@ -38,7 +38,7 @@ An examination of the confusion matrix reveals specific trends in class misclass
 <img width="500" alt="Screenshot 2024-05-09 at 10 48 01 AM" src="https://github.com/vennietweek/multimodal-speech-emotion-recognition/assets/19652161/8afa8f13-f4e4-4322-afde-3095a9417047">
 </p>
 
-Emotions such as 'Happy' and 'Sad' are well-classified, indicating the model's robustness in recognizing these distinct emotional states. However, a considerable amount of class confusion is observed with the 'Neutral' emotion, where various true labels were misclassified as 'Neutral.' Furthermore, for true labels classified as 'Neutral,' the predominant misclassifications were into the 'Anger' category, reflecting the dataset imbalance.
+Emotions such as 'Happy' and 'Sad' are well-classified, indicating the model's robustness in recognizing these distinct emotional states. However, a considerable amount of class confusion is observed with the 'Neutral' emotion, where various true labels were misclassified as 'Neutral'. Furthermore, for true labels classified as 'Neutral', the predominant misclassifications were into the 'Anger' category, reflecting the dataset imbalance.
 
 ## Running the Model
 
