@@ -14,7 +14,7 @@ It comprises 120 samples, with 110 timesteps per sample, and textual, audio and 
 
 To streamline the dataset, I merged 'happy' and 'excited' labels, as well as 'angry' and 'frustrated' labels. This resulted in a more imbalanced dataset, with the ‘Angry' class comprising 41.3% of the dataset:
 
-<img width="614" alt="Screenshot 2024-05-09 at 10 50 11 AM" src="https://github.com/vennietweek/multimodal-speech-emotion-recognition/assets/19652161/7b3315c1-4697-4eef-b425-eb4af6de75bb">
+<img width="200" alt="Screenshot 2024-05-09 at 10 50 11 AM" src="https://github.com/vennietweek/multimodal-speech-emotion-recognition/assets/19652161/7b3315c1-4697-4eef-b425-eb4af6de75bb">
 
 ## Model Architecture
 
