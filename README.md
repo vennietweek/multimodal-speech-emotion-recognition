@@ -14,7 +14,7 @@ It comprises 120 samples, with 110 timesteps per sample, and textual, audio and 
 
 To streamline the dataset, I merged 'happy' and 'excited' labels, as well as 'angry' and 'frustrated' labels. This resulted in a more imbalanced dataset, with the ‘Angry' class comprising 41.3% of the dataset:
 
-<img align="center" width="300" alt="Screenshot 2024-05-09 at 10 50 11 AM" src="https://github.com/vennietweek/multimodal-speech-emotion-recognition/assets/19652161/7b3315c1-4697-4eef-b425-eb4af6de75bb">
+<img width="300" alt="Screenshot 2024-05-09 at 10 50 11 AM" src="https://github.com/vennietweek/multimodal-speech-emotion-recognition/assets/19652161/7b3315c1-4697-4eef-b425-eb4af6de75bb">
 
 ## Model Architecture
 
@@ -30,7 +30,7 @@ The multimodal model achieved an accuracy of 0.7307 and an F1 score of 0.7292.
 
 An examination of the confusion matrix reveals specific trends in class misclassification:
 
-<img width="911" alt="Screenshot 2024-05-09 at 10 48 01 AM" src="https://github.com/vennietweek/multimodal-speech-emotion-recognition/assets/19652161/8afa8f13-f4e4-4322-afde-3095a9417047">
+<img width="500" alt="Screenshot 2024-05-09 at 10 48 01 AM" src="https://github.com/vennietweek/multimodal-speech-emotion-recognition/assets/19652161/8afa8f13-f4e4-4322-afde-3095a9417047">
 
 Emotions such as 'Happy' and 'Sad' are well-classified, indicating the model's robustness in recognizing these distinct emotional states. However, a considerable amount of class confusion is observed with the 'Neutral' emotion, where various true labels were misclassified as 'Neutral.' Furthermore, for true labels classified as 'Neutral,' the predominant misclassifications were into the 'Anger' category, reflecting the dataset imbalance.
 
